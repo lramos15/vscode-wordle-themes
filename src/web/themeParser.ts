@@ -34,10 +34,10 @@ const heartTheme: WordleTheme = {
   wrongLetterEmoji: '💔'
 };
 
-const appleTheme: WordleTheme = {
-  correctSpotEmoji: '',
-  correctLetterEmoji: '',
-  wrongLetterEmoji: '',
+const fruitTheme: WordleTheme = {
+  correctSpotEmoji: '🍏',
+  correctLetterEmoji: '🍌',
+  wrongLetterEmoji: '🍎',
 };
 
 
@@ -146,6 +146,7 @@ export class ThemeParser{
     this._themes.set('Light', wordleLightTheme);
     this._themes.set('Color Blind', colorBlindWordleTheme);
     this._themes.set('Heart', heartTheme);
+    this._themes.set('Fruits', fruitTheme);
 
     const themesConfiguration = vscode.workspace.getConfiguration('wordlethemes').get("themes") as WorldeThemeConfigurationEntry[];
     for (const theme of themesConfiguration) {
