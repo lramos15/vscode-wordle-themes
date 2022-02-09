@@ -1,0 +1,105 @@
+{
+	"name": "wordle-themes",
+	"displayName": "Wordle Themes",
+	"author": "Logan Ramos",
+	"publiser": "lramos15",
+	"description": "Fun themes for worlde!",
+	"version": "0.0.1",
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/lramos15/vscode-wordle-themes"
+  },
+  "bugs": {
+    "url": "https://github.com/lramos15/vscode-wordle-themes/issues"
+  },
+  "license": "MIT",
+	"engines": {
+		"vscode": "^1.64.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"icon": "wordle-themes-icon.jpeg",
+	"activationEvents": [
+		"onCommand:wordle-themes.chooseTheme",
+		"onCommand:wordle-themes.resetThemeMemory"
+	],
+	"browser": "./dist/web/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "wordle-themes.chooseTheme",
+				"title": "Wordle Themes: Change theme"
+			},
+			{
+				"command": "wordle-themes.resetThemeMemory",
+				"title": "Wordle Themes: Reset extension"
+			}
+		],
+		"configuration": [
+			{
+				"title": "Wordle Themes",
+				"properties": {
+					"wordlethemes.themes": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"title": "Theme Entry",
+							"properties": {
+								"name": {
+									"required": true,
+									"type": "string",
+									"description": "Name of the theme"
+								},
+								"correctSpotEmoji": {
+									"required": true,
+									"minLength": 1,
+									"type": "string",
+									"description": "Emoji to use for correct spot."
+								},
+								"correctLetterEmoji": {
+									"required": true,
+									"minLength": 1,
+									"type": "string",
+									"description": "Emoji to use for correct letter but wrong spot."
+								},
+								"wrongLetterEmoji": {
+									"required": true,
+									"minLength": 1,
+									"type": "string",
+									"description": "Emoji to use for wrong letter."
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+		"pretest": "yarn run compile-web",
+		"vscode:prepublish": "yarn run package-web",
+		"compile-web": "webpack",
+		"watch-web": "webpack --watch",
+		"package-web": "webpack --mode production --devtool hidden-source-map",
+		"lint": "eslint src --ext ts",
+		"run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.64.0",
+		"@types/mocha": "^9.0.0",
+		"eslint": "^8.6.0",
+		"@typescript-eslint/eslint-plugin": "^5.9.1",
+		"@typescript-eslint/parser": "^5.9.1",
+		"mocha": "^9.1.3",
+		"typescript": "^4.5.4",
+		"@vscode/test-web": "^0.0.15",
+		"ts-loader": "^9.2.6",
+		"webpack": "^5.66.0",
+		"webpack-cli": "^4.9.1",
+		"@types/webpack-env": "^1.16.3",
+		"assert": "^2.0.0",
+		"process": "^0.11.10"
+	}
+}
